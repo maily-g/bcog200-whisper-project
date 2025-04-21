@@ -1,4 +1,4 @@
-# project_1
+
 # Whisper and Expert Coding Comparison
 
 ## Project Overview

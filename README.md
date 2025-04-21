@@ -1,12 +1,35 @@
 # project_1
- Title: Whisper and Human Transcription of Speech in Daylong Audio Recordings
+# Whisper and Expert Coding Comparison
+
+## Project Overview
+
+This project explores the use of OpenAI’s **Whisper** automatic speech recognition (ASR) system to transcribe naturalistic, daylong audio recordings collected in infant home environments. Transcription of children's language is a widely used method in developmental and cognitive psychology, but manual transcription is time consuming and effortful, especially for long and noisy recordings.
+
+By comparing Whisper’s transcriptions to expert human transcriptions, this project aims to evaluate the accuracy and efficiency of automated transcription methods for use in developmental research.
+
+
+---
+## Installation
+```bash
+# Install the required dependencies 
+pip install -r requirements.txt
+
+# Run the test file
+python test.py
+```
+---
+## Code Structure
+
+- `test/` - contains files for running a demo
+    - `test_clip_tracript.txt`- sample human trascript that corresponds to the test clip audio.
+    - `test_clip.wav` - sample audio clip that can be used for the test
+    - `test.py` – Simple test file for testing Whisper transcription and word counts.
+- `requirements.txt` – Python dependencies needed to run the project.
+- `transcribe_compare.py` – Main script for comparing Whisper and expert transcriptions.
+
+---
+## References 
+Sun, A., Londono, J. J., Elbaum, B., Estrada, L., Lazo, R. J., Vitale, L., ... & Messinger, D. S. (2024, May). Who said what? an automated approach to analyzing speech in preschool classrooms. In 2024 IEEE International Conference on Development and Learning (ICDL) (pp. 1-8). IEEE.
+
 
  
-Transcription of children's language in cognitive or developmental psychology has been widely used as a methodological technique in understanding early language learning. However, human transcription can be time consuming and effortful, making it a less feasible methodology depending on the research project. Recently, some scientists have proposed automated approaches to analyzing human speech. One of which is through OpenAI’s Whisper. This automated speech recognition system relies on deep learning algorithms that is trained on extensive amounts of speech samples that have corresponding transcription files (Yu & Deng, 2016; Bian, Fu, & Xu, 2021). Recent work has shown promise in Whisper’s reliability and accuracy when comparing preschool audio transcriptions to human experts (Sun et.al., 2024). Similarly, for my project, I want to use Whisper’s automated approach to analyze its reliability against human coders on daylong audio recordings that were collected in infant homes. In our lab, we have 5 fully transcribed daylong audio recordings. To put into perspective, 5 minutes of audio transcription can take anywhere between 30 minutes to 1 hour. A daylong audio recording can be up to 16 hours long. Thus, having 5 fully transcribed daylong recordings is a tremendous amount of data, not to mention, daylong audio recordings can be quite noisy. My interests lie in discovering the characteristics or features of an infant’s home environment that play a role in early language learning. Naturalistic data has aided in our understanding of this domain. 
-
-I want to sample 10 minutes of data from each daylong recording to give to Whisper to transcribe and compare across the two. Input has to include .wav or .mp3 audio files and their corresponding CSV files (for human transcription only). I plan to implement a python script that can capture word error rate (WER) as a measure of accuracy across the two methods. WER takes the any number of errors such as incorrect word, missing word, or an extra word and divides that by the total number of words in the reference utterance. If feasible, I would also want to have measures for speaker identities and number of utterances to compare Whisper’s accuracy of other features of transcription. 
-
-This project is another way to measure reliability on automated trascription. If validated, automated transcription can increase the efficiency of transcription by reducing a project's timeline if they are choosing to transcribe natural language. While not always perfect, it can still decrease the amount of time spent on transcription. Additionally, if total word counts and unique number of words turns out to be reliable then this could be an efficient way of measuring qualitative differences in speech. 
-
-
-

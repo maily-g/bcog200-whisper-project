@@ -2,7 +2,9 @@ Implementation and Breakdown of Code
 - A process__audio_files function to load in and transcribe 10 minute clips of audio files through Whisper that will save them into a csv file.
     This has been completed and is shown in main.py.
 - A load_expert_files function that will load in the corresponding 10 minute clips of human coded files and will save them into a csv file like the Whisper csv files.
-    Working on this next, I'm currently trying to clip the corresponding 10 minute segments from the full transcripts. 
+    Implemented
+- A clean_transcript function that will remove any punctation and symbols from the text
+    Implemented
 - A word_count function that will calculate the total number of words per utterance.
     Implemented.
 - A unique_words function that will calculate the total number of unique words per utterance.

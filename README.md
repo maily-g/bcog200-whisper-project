@@ -25,7 +25,8 @@ python test.py
     - `test_clip.wav` - sample audio clip that can be used for the test
     - `test.py` – Simple test file for testing Whisper transcription and word counts.
 - `requirements.txt` – Python dependencies needed to run the project.
-- `transcribe_compare.py` – Main script for comparing Whisper and expert transcriptions.
+- `main.py` – Main script for comparing Whisper and expert transcriptions.
+- `implementation.md` - contains an outline for the project code
 
 ---
 ## References 

@@ -13,6 +13,13 @@ By comparing Whisper’s transcriptions to expert human transcriptions, this pro
 ```bash
 # Install the required dependencies 
 pip install -r requirements.txt
+```
+
+#FFmpeg dependency 
+This project requires [FFmpeg]
+Install via Homebrew (macOS):
+```bash
+brew install ffmpeg
 
 # Run the test file
 pytest tests/
@@ -39,7 +46,8 @@ whisper-project/
 ├── scripts/
 │   ├── analysis.py
 │   ├── clean_files.py
-│   └── whisper_transcription_process.py
+│   ├── whisper_transcription_process.py
+│   └── __init__.py
 ├── tests/
 │   └── test.py   
 ```

@@ -28,6 +28,7 @@ pytest tests/
 ---
 ## Folder Structure Requirements
 To run the scripts, you will need to make sure your directory is organized like this:
+```bash
 whisper-project/
 ├── audio/                           
 ├── transcripts/
@@ -41,7 +42,9 @@ whisper-project/
 │   └── whisper_transcription_process.py
 ├── tests/
 │   └── test.py   
-Subfolders like cleaned_individual/ and cleaned/ will be automatically created by the scripts.        
+```
+Subfolders like cleaned_individual/ and cleaned/ will be automatically created by the scripts. 
+       
 
 ---
 ## References 

@@ -13,12 +13,11 @@ By comparing Whisper’s transcriptions to expert human transcriptions, this pro
 ```bash
 # Install the required dependencies 
 pip install -r requirements.txt
-```
 
-#FFmpeg dependency 
-This project requires [FFmpeg]
-Install via Homebrew (macOS):
-```bash
+# FFmpeg dependency 
+# This project requires [FFmpeg]
+# Install via Homebrew (macOS):
+
 brew install ffmpeg
 
 # Run the test file

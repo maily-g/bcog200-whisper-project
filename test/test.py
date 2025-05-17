@@ -1,45 +1,35 @@
-import whisper 
-import os
 import pandas as pd
+from analysis import clean_transcript, align_and_evaluate
 
+    
+def test_clean_transcript():
+    df = pd.DataFrame({'utterance': ["hello world!", "Nice to meet you"],
+                       'start': [0, 1],
+                       'end': [1, 2]})
+    cleaned = clean_transcript(df)
+    assert cleaned['word_count'].tolist() == [2, 4]
+    assert cleaned['unique_word_count'].tolist() == [6, 6]
 
-def process_audio_files():
-	model = whisper.load_model("small")
-	audio_file_path = "/path/to/file/or/folder" #add your own path here
-	output_path = "/path/for/output"
-	audio_files = os.listdir(audio_file_path)
+def test_align_and_evaluate():
+    whisper_df = pd.DataFrame({'utterance': ["nice job"],
+                               'start': [0],
+                               'end': [5]})
+    expert_df = pd.DataFrame({'utterance': ["nice", "job"],
+                               'start': [1, 2],
+                               'end': [2, 3]})
+    aligned = align_and_evaluate(whisper_df, expert_df)
+    assert aligned.iloc[0]['WER'] is not None 
+    assert "nice job" in aligned.iloc[0]['expert_utterance']
 
-	for audio_file in audio_files:
-		if audio_file.endswith('.wav') or audio_file.endswith('.mp3'):
-			print(f'Processing {audio_file}')
-			audio_path = os.path.join(audio_file_path, audio_file)
-			result = model.transcribe(audio_path, fp16=False)
-
-			#Lists timestamps for each utterance
-			segments = result.get("segments", [])
-			rows = [{
-			"start": round(seg["start"], 2),
-			"end": round(seg["end"], 2),
-			"utterance": seg["text"].strip()
-			} for seg in segments]
-
-			#Saves files as a csv
-			df = pd.DataFrame(rows)
-			filename = os.path.splitext(audio_file)[0]
-			csv_output_path = os.path.join(output_path, f'{filename}_transcript.csv')
-			df.to_csv(csv_output_path, index=False)
-			print(f'Saved transcript to {csv_output_path}')
-
-def word_count(utterance):
-	return len(str(utterance).split())
-
-def unique_words(utterance):
-    return len(set(str(utterance).split()))
-
-def main():
-	process_audio_files()
-	print("Total words in test string:", word_count("This is a test"))
-	print("Unique words in test string:", unique_words("This is a test"))
-
-if __name__ == "__main__":
-    main()
+def test_reuse_utterances():
+    whisper_df = pd.DataFrame({'utterance': ["nice job"] * 4,
+                               'start': [0, 10, 20, 30],
+                               'end': [5, 15, 25, 35]})
+    expert_df = pd.DataFrame({'utterance': ["nice job"] * 4,
+                               'start': [1, 11, 21, 31 ],
+                               'end': [2, 12, 22, 32 ]})
+    aligned = align_and_evaluate(whisper_df, expert_df)
+    used = aligned["whisper_utterance"].value_counts().get("nice job", 0)
+    assert used == 2 
+    
+    

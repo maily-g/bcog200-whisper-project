@@ -15,18 +15,33 @@ By comparing Whisper’s transcriptions to expert human transcriptions, this pro
 pip install -r requirements.txt
 
 # Run the test file
-python test.py
+pytest tests/
 ```
 ---
 ## Code Structure
-
-- `test/` - contains files for running a demo
-    - `test_clip_tracript.txt`- sample human trascript that corresponds to the test clip audio.
-    - `test_clip.wav` - sample audio clip that can be used for the test
-    - `test.py` – Simple test file for testing Whisper transcription and word counts.
+- `test/` - contains three unit tests.
+    - `test.py` – Simple test file for testing Whisper accuracy.
 - `requirements.txt` – Python dependencies needed to run the project.
-- `main.py` – Main script for comparing Whisper and expert transcriptions.
-- `implementation.md` - contains an outline for the project code
+- `analysis.py` – Main script for comparing Whisper and expert transcriptions.
+- `clean_files.py` - script that will clean csv files with blanks or non-utterance conts.
+- `whisper_transcription.py` - script that will process audio files through Whisper to output a transcribed csv file.
+---
+## Folder Structure Requirements
+To run the scripts, you will need to make sure your directory is organized like this:
+whisper-project/
+├── audio/                           
+├── transcripts/
+│   ├── whisper_transcripts/        
+│   └── expert_transcripts/ 
+│       └── cleaned/        
+├── cleaned_individual/                           
+├── scripts/
+│   ├── analysis.py
+│   ├── clean_files.py
+│   └── whisper_transcription_process.py
+├── tests/
+│   └── test.py   
+Subfolders like cleaned_individual/ and cleaned/ will be automatically created by the scripts.        
 
 ---
 ## References 

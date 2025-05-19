@@ -48,7 +48,7 @@ whisper-project/
 │   ├── whisper_transcription_process.py
 │   └── __init__.py
 ├── tests/
-│   └── test.py   
+│   └── test_whisper.py   
 ```
 Subfolders like cleaned_individual/ and cleaned/ will be automatically created by the scripts. Note, both trancripts needed for anaylsis must have the same name.
        

@@ -17,7 +17,7 @@ def load_files(path):
     df_dict = {os.path.splitext(f)[0]: pd.read_csv(os.path.join(path, f)) for f in files if f.endswith('.csv')}
     return df_dict
 
-def clean_transcript(df, output_path, key, file_type=None):
+def clean_transcript(df, output_path, key=None, file_type=None):
     '''
     Cleans transcripts on the dataframes and computes total word and unique word counts.
 
@@ -33,7 +33,7 @@ def clean_transcript(df, output_path, key, file_type=None):
     df['utterance'] = df['utterance'].apply(lambda x: re.sub(r'[^A-Za-z0-9]', ' ', str(x)).lower().strip())
     df['word_count'] = df['utterance'].apply(lambda x: len(x.split()))
     all_words = " ".join(df['utterance'].dropna().astype(str).str.lower())
-    df['unique_word_count'] = len(set(all_words))
+    df['unique_word_count'] = len(set(all_words.split()))
     os.makedirs(output_path, exist_ok=True)
     df.to_csv(os.path.join(output_path, f'{key}_{file_type}_final.csv'), index=False)
     return df

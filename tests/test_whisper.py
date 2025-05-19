@@ -1,12 +1,14 @@
 import pandas as pd
-from analysis import clean_transcript, align_and_evaluate
-
+import sys
+import os
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from scripts.analysis import clean_transcript, align_and_evaluate
     
 def test_clean_transcript():
     df = pd.DataFrame({'utterance': ["hello world!", "Nice to meet you"],
                        'start': [0, 1],
                        'end': [1, 2]})
-    cleaned = clean_transcript(df)
+    cleaned = clean_transcript(df, output_path=".", key="0", file_type="test")
     assert cleaned['word_count'].tolist() == [2, 4]
     assert cleaned['unique_word_count'].tolist() == [6, 6]
 
